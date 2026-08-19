@@ -1,1 +1,70 @@
+#include <stdio.h>
+#define MAX_PESSOAS 30
+#define QTD_PREF 6
 
+// protótipo das funções
+void cadastro(int qtdCadastro, char nomes[][50], float notas[][QTD_PREF]);
+void zerarVetorNomes(char nomes[][50]);
+
+
+// implementação das funções
+void zerarVetorNomes(char nomes[][50]) {
+	
+	
+	
+	
+}
+
+void cadastro(int qtdCadastro, char nomes[][50], float notas[][QTD_PREF]) {
+	int i, j=0, notaMus, notaCin, notaJog, notaEsp, notaLei, notaProg;
+	
+	
+	for(i=0;i<qtdCadastro;i++)
+	{
+		printf("Forneca o Nome: ");         /* deve ser corrigido, pois ela disse pra criar uma funcao p scannear -acho-  */
+		gets(nome);
+		printf("Nota para Música");
+		scanf("%d", &notaMus);
+		printf("Nota para Cinema");
+		scanf("%d", &notaCin);
+		printf("Nota para Jogos");
+		scanf("%d", &notaJog);
+		printf("Nota para Esportes");
+		scanf("%d", &notaEsp);
+		printf("Nota para Leitura");
+		scanf("%d", &notaLei);
+		printf("Nota para Programação");
+		scanf("%d", &notaProg);
+		
+		j++;
+	}
+}
+
+void main() {
+	char nomes[MAX_PESSOAS];
+	float notas[MAX_PESSOAS][QTD_PREF];
+	int escolha; // funcao que o usuario escolheu. ex: cadastrar pessoa, exibir pessoas etc...
+	
+	// mostrando as opções de funções para o usuário	
+	printf("========================================\n\tSistema de Afinidades========================================\n\n");
+	printf("1 - Cadastrar pessoas\n2 - Exibir pessoas e preferências\n3 - Buscar pessoa pelo nome\n4 - Comparar duas pessoas\n");
+	printf("5 - Encontrar pessoa mais semelhante\n6 - Exibir ranking de afinidade\n7 - Analisar preferências de duas pessoas\n0 - Encerrar\n\n");
+	scanf("%d", &escolha);
+	
+	if(escolha==1)
+	{
+		printf("Quantas pessoas deseja cadastrar: \n")
+		scanf("%d", %qtdCadastro);
+		
+		// validando para saber se foi informado um número de pessoas permitido
+		if((1<=qtdCadastro)&&(qtdCadastro<=MAX_PESSOAS))
+		{
+			// chamando função de cadastro
+			cadastro(qtdCadastro, nomes, notas);
+		}
+		else
+		{
+			printf("O valor de pessoas nao e valido. \n");
+		}
+	}
+}
