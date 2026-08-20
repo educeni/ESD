@@ -1,49 +1,41 @@
 #include <stdio.h>
+#include <string.h>
 #define MAX_PESSOAS 30
 #define QTD_PREF 6
 
 // protótipo das funções
-void cadastro(int qtdCadastro, char nomes[][50], float notas[][QTD_PREF]);
-void zerarVetorNomes(char nomes[][50]);
+void cadastro(int qtdCadastro, char nomes[25], float notas[][QTD_PREF], int *j);
 
 
-// implementação das funções
-void zerarVetorNomes(char nomes[][50]) {
-	
-	
-	
-	
-}
+void cadastro(int qtdCadastro, char nomes[25], float notas[][QTD_PREF], int *j) {
+	int i;
 
-void cadastro(int qtdCadastro, char nomes[][50], float notas[][QTD_PREF]) {
-	int i, j=0, notaMus, notaCin, notaJog, notaEsp, notaLei, notaProg;
-	
 	
 	for(i=0;i<qtdCadastro;i++)
 	{
-		printf("Forneca o Nome: ");         /* deve ser corrigido, pois ela disse pra criar uma funcao p scannear -acho-  */
-		gets(nome);
+		printf("Forneca o Nome: ");         
+		scanf("%s", &nomes[*j]);
 		printf("Nota para Música");
-		scanf("%d", &notaMus);
+		scanf("%f", &notas[*j][0]);
 		printf("Nota para Cinema");
-		scanf("%d", &notaCin);
+		scanf("%f", &notas[*j][1]);
 		printf("Nota para Jogos");
-		scanf("%d", &notaJog);
+		scanf("%f", &notas[*j][2]);
 		printf("Nota para Esportes");
-		scanf("%d", &notaEsp);
+		scanf("%f", &notas[*j][3]);
 		printf("Nota para Leitura");
-		scanf("%d", &notaLei);
+		scanf("%f", &notas[*j][4]);
 		printf("Nota para Programação");
-		scanf("%d", &notaProg);
+		scanf("%f", &notas[*j][5]);
 		
-		j++;
-	}
+		*j++;
+}
 }
 
 void main() {
 	char nomes[MAX_PESSOAS];
 	float notas[MAX_PESSOAS][QTD_PREF];
-	int escolha; // funcao que o usuario escolheu. ex: cadastrar pessoa, exibir pessoas etc...
+	int escolha, qtdCadastro, quant = 0; // funcao que o usuario escolheu. ex: cadastrar pessoa, exibir pessoas etc...
 	
 	// mostrando as opções de funções para o usuário	
 	printf("========================================\n\tSistema de Afinidades========================================\n\n");
@@ -53,14 +45,14 @@ void main() {
 	
 	if(escolha==1)
 	{
-		printf("Quantas pessoas deseja cadastrar: \n")
-		scanf("%d", %qtdCadastro);
+		printf("Quantas pessoas deseja cadastrar: \n");
+		scanf("%d", &qtdCadastro);
 		
 		// validando para saber se foi informado um número de pessoas permitido
 		if((1<=qtdCadastro)&&(qtdCadastro<=MAX_PESSOAS))
 		{
 			// chamando função de cadastro
-			cadastro(qtdCadastro, nomes, notas);
+			cadastro(qtdCadastro, nomes, notas, &quant);
 		}
 		else
 		{
