@@ -34,6 +34,7 @@ void main()
 		        {
 			        // Chamando função de cadastro
 			        cadastro(qtdCadastro, nomes, notas, &quant);
+			       printf("valor de quant: %i", quant);
 		        }
 		        else
 		        {
@@ -41,7 +42,7 @@ void main()
 		        }
                 break;
             case 2:
-				exibir(nomes, notas, qtdCadastro);
+				exibir(nomes, notas, quant);
 				break;
 			case 3:
 				break;
@@ -78,12 +79,14 @@ void cadastro(int qtdCadastro, char nomes[MAX_PESSOAS][50], float notas[][QTD_PR
 		printf("Nota para Programação: ");
 		scanf("%f", &notas[*j][5]);
 		
-		*j++;
+		printf("%i", *j);
+		(*j)++;
     }
 }
 
 void exibir(char nomes[MAX_PESSOAS][50], float notas[][QTD_PREF], int qtdCadastro)
 {
+    
 	int i;
 
 	printf("\n			PREFERÊNCIAS\n\n");
