@@ -6,12 +6,14 @@
 // Protótipo das Funções
 int cadastro(int qtdCadastro, char nomes[MAX_PESSOAS][50], float notas[][QTD_PREF], int *j);
 void exibir(char nomes[MAX_PESSOAS][50], float notas[][QTD_PREF], int qtdCadastro);
+int buscarnome(char nomepesquisado[],char nomes[MAX_PESSOAS][50], int j);
 
 void main()
 {
 	char nomes[MAX_PESSOAS][50];
 	float notas[MAX_PESSOAS][QTD_PREF];
 	int escolha, qtdCadastro, quant = 0; // Variáveis da função cadastro
+	char nomepesquisado[25];
 
 	// mostrando as opções de funções para o usuário
 	while (escolha != 0)
@@ -40,17 +42,40 @@ void main()
 			{
 				// Chamando função de cadastro
 				cadastro(qtdCadastro, nomes, notas, &quant);
-			
+
 			}
 			else
 			{
 				printf("O numero de pessoas informado excede o limite do cadastro. \n");
 			}
 			break;
+
 		case 2:
+		printf("\n");
 			exibir(nomes, notas, quant);
+		printf("\n");
 			break;
+
 		case 3:
+
+			if(quant > 0) {
+				printf("Me diga um nome:");
+				scanf("%s", &nomepesquisado);
+				if(buscarnome(nomepesquisado, nomes, quant) == 0){
+				    printf("%s foi encontrado no sistema\n\n", nomepesquisado);
+				}else{
+				    printf("usuario não encontrado :( \n\n");
+				}
+			} else {
+				printf("Nenhum cadastro registrado ainda \n\n");
+			}
+
+
+
+
+
+
+
 			break;
 		case 4:
 			break;
@@ -179,4 +204,18 @@ void exibir(char nomes[MAX_PESSOAS][50], float notas[][QTD_PREF], int qtdCadastr
 	{
 		printf("Pessoa %d - %s %.1f %.1f %.1f %.1f %.1f %.1f\n", i, nomes[i], notas[i][0], notas[i][1], notas[i][2], notas[i][3], notas[i][4], notas[i][5]);
 	}
+}
+
+int buscarnome(char nomepesquisado[],char nomes[MAX_PESSOAS][50], int j) {
+
+	int i;
+
+	for(i=0; i < j; i++) {
+		if(strcmp(nomepesquisado,nomes[i]) == 0) {
+			return 0;
+		}
+	}
+
+	return -1;
+
 }
