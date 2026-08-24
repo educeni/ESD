@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 #define MAX_PESSOAS 30
 #define QTD_PREF 6
 
@@ -7,7 +8,7 @@
 int cadastro(int qtdCadastro, char nomes[MAX_PESSOAS][50], float notas[][QTD_PREF], int *j);
 void exibir(char nomes[MAX_PESSOAS][50], float notas[][QTD_PREF], int qtdCadastro);
 int buscarnome(char nomepesquisado[],char nomes[MAX_PESSOAS][50], int j);
-float float calculaDistancia(float notas[][QTD_PREF],int pessoa1,int pessoa2, int posNome, int posNome2, int lin, int col);
+float calculaDistancia(float notas[][QTD_PREF],int pessoa1,int pessoa2, int col);
 
 // Implementação das funções
 void main()
@@ -86,12 +87,14 @@ void main()
 
 			// verificando se o nome consta na matriz...
 			if((-1!=verificaNome)&&(-1!=verificaNome)) {
-				result = calculaDistancia(notas, nomepesquisado, nomepesquisado2, verificaNome, verificaNome2, MAX_PESSOAS, QTD_PREF);
+				result = calculaDistancia(notas, verificaNome, verificaNome2, QTD_PREF);
+				
+				printf("\n========================================\nCOMPARACAO DE PERFIS\n========================================\n%s x %s\n", nomepesquisado, nomepesquisado2);
+				printf("Distancia euclidiana: %.2f", result);
 			}
 			else {
 				printf("Nome nao encontrado. \n");
 			}
-			
 			break;
 		case 5:
 			break;
@@ -232,26 +235,17 @@ int buscarnome(char nomepesquisado[],char nomes[MAX_PESSOAS][50], int j) {
 
 }
 
-float calculaDistancia(float notas[][QTD_PREF],int pessoa1,int pessoa2, int posNome, int posNome2, int lin, int col)
+float calculaDistancia(float notas[][QTD_PREF],int pessoa1,int pessoa2, int col)
 {
-	int i, j;
-	float soma, distancia; 
+	int j;
+	float soma=0, distancia, diferenca; 
 
-	for (i = 0; i < count; i++)
+	for (j=0; j < col; j++)
 	{
-		
-		for (j=0; i < count; i++)
-		{
-			if(posNome == i)
-			{
-				
-			}
-		}
-		
+			diferenca =	notas[pessoa1][j] -	notas[pessoa2][j];
+			soma += diferenca*diferenca;		
 	}
-	
 
-
-
-
+	distancia = sqrt(soma);
+	return distancia;
 }
