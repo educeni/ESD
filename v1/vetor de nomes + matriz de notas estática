@@ -7,11 +7,13 @@
 int cadastro(int qtdCadastro, char nomes[MAX_PESSOAS][50], float notas[][QTD_PREF], int *j);
 void exibir(char nomes[MAX_PESSOAS][50], float notas[][QTD_PREF], int qtdCadastro);
 int buscarnome(char nomepesquisado[],char nomes[MAX_PESSOAS][50], int j);
+float float calculaDistancia(float notas[][QTD_PREF],int pessoa1,int pessoa2, int posNome, int posNome2, int lin, int col);
 
+// Implementação das funções
 void main()
 {
 	char nomes[MAX_PESSOAS][50];
-	float notas[MAX_PESSOAS][QTD_PREF];
+	float notas[MAX_PESSOAS][QTD_PREF], result;
 	int escolha, qtdCadastro, quant = 0; // Variáveis da função cadastro
 	char nomepesquisado[25];
 
@@ -61,7 +63,7 @@ void main()
 			if(quant > 0) {
 				printf("Me diga um nome:");
 				scanf("%s", &nomepesquisado);
-				if(buscarnome(nomepesquisado, nomes, quant) == 0){
+				if(buscarnome(nomepesquisado, nomes, quant) != -1){
 				    printf("%s foi encontrado no sistema\n\n", nomepesquisado);
 				}else{
 				    printf("usuario não encontrado :( \n\n");
@@ -70,14 +72,26 @@ void main()
 				printf("Nenhum cadastro registrado ainda \n\n");
 			}
 
-
-
-
-
-
-
 			break;
+
+
 		case 4:
+			printf("Forneca o nome da primeira pessoa: ");
+			scanf("%s", &nomepesquisado);
+			printf("Forneca o nome da segunda pessoa: ");
+			scanf("%s", &nomepesquisado2);
+
+			verificaNome = buscarnome(nomepesquisado, nomes, quant);
+			verificaNome2 = buscarnome(nomepesquisado, nomes, quant);
+
+			// verificando se o nome consta na matriz...
+			if((-1!=verificaNome)&&(-1!=verificaNome)) {
+				result = calculaDistancia(notas, nomepesquisado, nomepesquisado2, verificaNome, verificaNome2, MAX_PESSOAS, QTD_PREF);
+			}
+			else {
+				printf("Nome nao encontrado. \n");
+			}
+			
 			break;
 		case 5:
 			break;
@@ -187,8 +201,6 @@ int cadastro(int qtdCadastro, char nomes[MAX_PESSOAS][50], float notas[][QTD_PRE
 		}
 		(*j)++;
 	}
-
-
 }
 
 void exibir(char nomes[MAX_PESSOAS][50], float notas[][QTD_PREF], int qtdCadastro)
@@ -212,10 +224,34 @@ int buscarnome(char nomepesquisado[],char nomes[MAX_PESSOAS][50], int j) {
 
 	for(i=0; i < j; i++) {
 		if(strcmp(nomepesquisado,nomes[i]) == 0) {
-			return 0;
+			return i;
 		}
 	}
 
 	return -1;
+
+}
+
+float calculaDistancia(float notas[][QTD_PREF],int pessoa1,int pessoa2, int posNome, int posNome2, int lin, int col)
+{
+	int i, j;
+	float soma, distancia; 
+
+	for (i = 0; i < count; i++)
+	{
+		
+		for (j=0; i < count; i++)
+		{
+			if(posNome == i)
+			{
+				
+			}
+		}
+		
+	}
+	
+
+
+
 
 }
