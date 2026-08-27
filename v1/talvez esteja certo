@@ -21,7 +21,7 @@ void main()
 {
    char nomes[MAX_PESSOAS][50];
    float notas[MAX_PESSOAS][QTD_PREF], result;
-   int escolha, qtdCadastro, quant = 0, verificaNome, verificaNome2, nomeachado; // Variáveis da função cadastro
+   int escolha=-1, qtdCadastro, quant = 0, verificaNome, verificaNome2, nomeachado; // Variáveis da função cadastro
    char nomepesquisado[25], nomepesquisado2[25];
 
 
@@ -74,7 +74,7 @@ void main()
            if (quant > 0)
            {
                printf("Me diga um nome:");
-               scanf("%s", &nomepesquisado);
+               scanf("%s", nomepesquisado);
                if (buscarnome(nomepesquisado, nomes, quant) != -1)
                {
                    printf("%s foi encontrado no sistema\n\n", nomepesquisado);
@@ -122,7 +122,7 @@ void main()
 
 
            printf("Forneca o nome da primeira pessoa: ");
-           scanf("%s", &nomepesquisado);
+           scanf("%s", nomepesquisado);
 
 
            verificaNome = buscarnome(nomepesquisado, nomes, quant);
@@ -182,7 +182,7 @@ int cadastro(int qtdCadastro, char nomes[MAX_PESSOAS][50], float notas[][QTD_PRE
    for (i = 0; i < qtdCadastro; i++)
    {
        printf("Forneca o Nome: ");
-       scanf("%s", &nomes[*j]);
+       scanf("%s", nomes[*j]);
 
 
        for (k = 0; k < 6; k++)
