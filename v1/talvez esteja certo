@@ -365,13 +365,6 @@ void afinidade(char nomes[MAX_PESSOAS][50],float notas[][QTD_PREF],char nomepesq
    }
 }
 
-
-int buscaNota(float notas[][QTD_PREF], char nomes[MAX_PESSOAS][50], int indiceNota, int pessoa)
-{
-   return notas[pessoa][indiceNota];
-}
-
-
 void analisePreferencia(float notas[][QTD_PREF], char nomes[MAX_PESSOAS][50], int pessoa1, int pessoa2, int col)
 {  
    float nota, nota2, diferenca[QTD_PREF], menorDif = FLT_MAX;
@@ -390,8 +383,8 @@ void analisePreferencia(float notas[][QTD_PREF], char nomes[MAX_PESSOAS][50], in
 
    for(i=0;i<col;i++)
    {
-       nota = buscaNota(notas, nomes, i, pessoa1);
-       nota2 = buscaNota(notas, nomes, i, pessoa2);
+       	nota = notas[pessoa1][i];
+    	nota2 = notas[pessoa2][i];
        
        if(nota >= nota2)
 	   {
