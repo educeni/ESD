@@ -173,128 +173,41 @@ void main()
 }
 
 
-int cadastro(int qtdCadastro, char nomes[MAX_PESSOAS][50], float notas[][QTD_PREF], int *j)
+int cadastro(int qtdCadastro, char nomes[MAX_PESSOAS][50],
+             float notas[][QTD_PREF], int *j)
 {
-	int i, k;
-   float nota;
+    int i, k;
+    float nota;
 
+    char* categorias[] = {"Musica", "Cinema","Jogos","Esportes","Leitura", "Programacao"};
 
-   for (i = 0; i < qtdCadastro; i++)
-   {
-       printf("Forneca o Nome: ");
-       scanf("%s", nomes[*j]);
+    for (i = 0; i < qtdCadastro; i++)
+    {
+        printf("\nForneca o Nome: ");
+        scanf("%49s", nomes[*j]);
 
+        for (k = 0; k < QTD_PREF; k++)
+        {
+            do
+            {
+                printf("Nota para %s: ", categorias[k]);
+                scanf("%f", &nota);
 
-       for (k = 0; k < 6; k++)
-       {
-           switch (k)
-           {
-           case 0:
-               printf("Nota para Música: ");
-               scanf("%f", &nota);
-               if (nota > 0 && nota < 11)
-               {
-                   notas[*j][k] = nota;
-               }
-               else
-               {
-                   printf("nota invalida, refaça o cadastro");
-                   return 1;
-               }
+                if (nota < 0 || nota > 10)
+                {
+                    printf("Nota invalida! Deve ser entre 0 e 10.\n");
+                }
 
+            } while (nota < 0 || nota > 10);
 
-               break;
+            notas[*j][k] = nota;
+        }
 
+        (*j)++;
+    }
 
-           case 1:
-               printf("Nota para Cinema: ");
-               scanf("%f", &nota);
-               if (nota > 0 && nota < 11)
-               {
-                   notas[*j][k] = nota;
-               }
-               else
-               {
-                   printf("nota invalida, refaça o cadastro");
-                   return 1;
-               }
-
-
-               break;
-
-
-           case 2:
-               printf("Nota para Jogos: ");
-               scanf("%f", &nota);
-               if (nota > 0 && nota < 11)
-               {
-                   notas[*j][k] = nota;
-               }
-               else
-               {
-                   printf("nota invalida, refaça o cadastro");
-                   return 1;
-               }
-
-
-               break;
-
-
-           case 3:
-               printf("Nota para Esportes: ");
-               scanf("%f", &nota);
-               if (nota > 0 && nota < 11)
-               {
-                   notas[*j][k] = nota;
-               }
-               else
-               {
-                   printf("nota invalida, refaça o cadastro");
-                   return 1;
-               }
-
-
-               break;
-
-
-           case 4:
-               printf("Nota para Leitura: ");
-               scanf("%f", &nota);
-               if (nota > 0 && nota < 11)
-               {
-                   notas[*j][k] = nota;
-               }
-               else
-               {
-                   printf("nota invalida, refaça o cadastro");
-                   return 1;
-               }
-
-
-               break;
-
-
-           default:
-               printf("Nota para Programação: ");
-               scanf("%f", &nota);
-               if (nota > 0 && nota < 11)
-               {
-                   notas[*j][k] = nota;
-               }
-               else
-               {
-                   printf("nota invalida, refaça o cadastro");
-                   return 1;
-               }
-
-
-               break;
-           }
-       }
-       (*j)++;
-   }
+    return 1;
 }
-
 
 void exibir(char nomes[MAX_PESSOAS][50], float notas[][QTD_PREF], int qtdCadastro)
 {
@@ -353,7 +266,7 @@ float calculaDistancia(float notas[][QTD_PREF], int pessoa1, int pessoa2, int co
 }
 
 
-float Pessoamaissemelhante(float notas[][QTD_PREF], int verificaNome, char nomes[MAX_PESSOAS][50], int col, int *nomeachado)
+float Pessoamaissemelhante(float notas[][QTD_PREF], int verificaNome, char nomes[MAX_PESSOAS][50], int quant, int *nomeachado)
 {
 
 
@@ -361,7 +274,7 @@ float Pessoamaissemelhante(float notas[][QTD_PREF], int verificaNome, char nomes
    float result, proximo = 9999;
 
 
-   for (i = 0; i < col; i++)
+   for (i = 0; i < quant; i++)
    {
        result = calculaDistancia(notas, verificaNome, i, col);
        if (verificaNome != i)
