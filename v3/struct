@@ -14,9 +14,7 @@ typedef struct {
 } Pessoa;
 
 
-/* ======================================================
-   PROTÓTIPOS DAS FUNÇÕES
-   ====================================================== */
+
 
 int cadastro(int qtdCadastro, Pessoa pessoas[], int *quant);
 void exibir(Pessoa pessoas[], int qtdCadastro);
@@ -28,9 +26,7 @@ void analisePreferencia(Pessoa pessoas[], int pessoa1, int pessoa2);
 float buscaNota(Pessoa pessoas[], int indiceNota, int pessoa);
 
 
-/* ======================================================
-   FUNÇÃO PRINCIPAL - MAIN
-   ====================================================== */
+
 
 int main()
 {
@@ -47,7 +43,7 @@ int main()
     char nomepesquisado2[TAM_NOME];
 
 
-    /* ----- Menu principal ----- */
+
 
     while (escolha != 0)
     {
@@ -240,9 +236,6 @@ int main()
 }
 
 
-/* ======================================================
-   FUNÇÃO 1 - CADASTRO
-   ====================================================== */
 
 int cadastro(int qtdCadastro, Pessoa pessoas[], int *quant)
 {
@@ -279,9 +272,6 @@ int cadastro(int qtdCadastro, Pessoa pessoas[], int *quant)
 }
 
 
-/* ======================================================
-   FUNÇÃO 2 - EXIBIR PESSOAS
-   ====================================================== */
 
 void exibir(Pessoa pessoas[], int qtdCadastro)
 {
@@ -306,9 +296,7 @@ void exibir(Pessoa pessoas[], int qtdCadastro)
 }
 
 
-/* ======================================================
-   FUNÇÃO 3 - BUSCAR NOME
-   ====================================================== */
+
 
 int buscarnome(char nomepesquisado[], Pessoa pessoas[], int qtdCadastro)
 {
@@ -326,9 +314,7 @@ int buscarnome(char nomepesquisado[], Pessoa pessoas[], int qtdCadastro)
 }
 
 
-/* ======================================================
-   FUNÇÃO 4 - CALCULAR DISTÂNCIA
-   ====================================================== */
+
 
 float calculaDistancia(Pessoa pessoas[], int pessoa1, int pessoa2)
 {
@@ -346,9 +332,7 @@ float calculaDistancia(Pessoa pessoas[], int pessoa1, int pessoa2)
 }
 
 
-/* ======================================================
-   FUNÇÃO 5 - PESSOA MAIS SEMELHANTE
-   ====================================================== */
+
 
 float Pessoamaissemelhante(Pessoa pessoas[], int verificaNome, int quant, int *nomeachado)
 {
@@ -376,9 +360,7 @@ float Pessoamaissemelhante(Pessoa pessoas[], int verificaNome, int quant, int *n
 }
 
 
-/* ======================================================
-   FUNÇÃO 6 - RANKING DE AFINIDADE
-   ====================================================== */
+
 
 void afinidade(Pessoa pessoas[], char nomepesquisado[], int qtdCadastro)
 {
@@ -458,9 +440,7 @@ void afinidade(Pessoa pessoas[], char nomepesquisado[], int qtdCadastro)
 }
 
 
-/* ======================================================
-   FUNÇÃO 7 - BUSCAR NOTA
-   ====================================================== */
+
 
 float buscaNota(Pessoa pessoas[], int indiceNota, int pessoa)
 {
@@ -468,9 +448,7 @@ float buscaNota(Pessoa pessoas[], int indiceNota, int pessoa)
 }
 
 
-/* ======================================================
-   FUNÇÃO 8 - ANÁLISE DE PREFERÊNCIA
-   ====================================================== */
+
 
 void analisePreferencia(Pessoa pessoas[], int pessoa1, int pessoa2)
 {
