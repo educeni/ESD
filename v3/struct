@@ -13,9 +13,7 @@ typedef struct {
     float notas[QTD_PREF];
 } Pessoa;
 
-
-
-
+// Protótipo das funções
 int cadastro(int qtdCadastro, Pessoa pessoas[], int *quant);
 void exibir(Pessoa pessoas[], int qtdCadastro);
 int buscarnome(char nomepesquisado[], Pessoa pessoas[], int qtdCadastro);
@@ -24,9 +22,6 @@ void afinidade(Pessoa pessoas[], char nomepesquisado[], int qtdCadastro);
 float Pessoamaissemelhante(Pessoa pessoas[], int verificaNome, int quant, int *nomeachado);
 void analisePreferencia(Pessoa pessoas[], int pessoa1, int pessoa2);
 float buscaNota(Pessoa pessoas[], int indiceNota, int pessoa);
-
-
-
 
 int main()
 {
@@ -41,9 +36,6 @@ int main()
     int nomeachado;
     char nomepesquisado[TAM_NOME];
     char nomepesquisado2[TAM_NOME];
-
-
-
 
     while (escolha != 0)
     {
@@ -82,8 +74,6 @@ int main()
                     printf("\nCadastro realizado com sucesso!\n");
                 }
                 break;
-
-
             case 2:
                 if (quant > 0)
                 {
@@ -94,8 +84,6 @@ int main()
                     printf("Nenhum cadastro registrado ainda.\n");
                 }
                 break;
-
-
             case 3:
                 if (quant > 0)
                 {
@@ -103,7 +91,6 @@ int main()
                     scanf("%49s", nomepesquisado);
 
                     verificaNome = buscarnome(nomepesquisado, pessoas, quant);
-
                     if (verificaNome != -1)
                     {
                         printf("%s foi encontrado no sistema.\n", nomepesquisado);
@@ -118,15 +105,12 @@ int main()
                     printf("Nenhum cadastro registrado ainda.\n");
                 }
                 break;
-
-
             case 4:
                 if (quant < 2)
                 {
                     printf("E necessario cadastrar pelo menos duas pessoas.\n");
                     break;
                 }
-
                 printf("Forneca o nome da primeira pessoa: ");
                 scanf("%49s", nomepesquisado);
                 printf("Forneca o nome da segunda pessoa: ");
@@ -150,8 +134,6 @@ int main()
                     printf("Um ou mais nomes nao foram encontrados.\n");
                 }
                 break;
-
-
             case 5:
                 if (quant < 2)
                 {
@@ -163,7 +145,6 @@ int main()
                 scanf("%49s", nomepesquisado);
 
                 verificaNome = buscarnome(nomepesquisado, pessoas, quant);
-
                 if (verificaNome != -1)
                 {
                     result = Pessoamaissemelhante(pessoas, verificaNome, quant, &nomeachado);
@@ -179,29 +160,23 @@ int main()
                     printf("Nome nao encontrado.\n");
                 }
                 break;
-
-
             case 6:
                 if (quant < 2)
                 {
                     printf("E necessario cadastrar pelo menos duas pessoas.\n");
                     break;
                 }
-
                 printf("Informe a pessoa de referencia: ");
                 scanf("%49s", nomepesquisado);
 
                 afinidade(pessoas, nomepesquisado, quant);
                 break;
-
-
             case 7:
                 if (quant < 2)
                 {
                     printf("E necessario cadastrar pelo menos duas pessoas.\n");
                     break;
                 }
-
                 printf("Informe a primeira pessoa: ");
                 scanf("%49s", nomepesquisado);
                 printf("Informe a segunda pessoa: ");
@@ -219,23 +194,16 @@ int main()
                     printf("Um ou mais nomes nao foram encontrados.\n");
                 }
                 break;
-
-
             case 0:
                 printf("\nEncerrando o sistema...\n");
                 break;
-
-
             default:
                 printf("Opcao invalida. Tente novamente.\n");
                 break;
         }
     }
-
     return 0;
 }
-
-
 
 int cadastro(int qtdCadastro, Pessoa pessoas[], int *quant)
 {
@@ -261,17 +229,12 @@ int cadastro(int qtdCadastro, Pessoa pessoas[], int *quant)
                 }
             }
             while (nota < 0 || nota > 10);
-
             pessoas[*quant].notas[k] = nota;
         }
-
         (*quant)++;
     }
-
     return 1;
 }
-
-
 
 void exibir(Pessoa pessoas[], int qtdCadastro)
 {
@@ -295,9 +258,6 @@ void exibir(Pessoa pessoas[], int qtdCadastro)
     }
 }
 
-
-
-
 int buscarnome(char nomepesquisado[], Pessoa pessoas[], int qtdCadastro)
 {
     int i;
@@ -313,9 +273,6 @@ int buscarnome(char nomepesquisado[], Pessoa pessoas[], int qtdCadastro)
     return -1;
 }
 
-
-
-
 float calculaDistancia(Pessoa pessoas[], int pessoa1, int pessoa2)
 {
     int j;
@@ -327,12 +284,8 @@ float calculaDistancia(Pessoa pessoas[], int pessoa1, int pessoa2)
         diferenca = pessoas[pessoa1].notas[j] - pessoas[pessoa2].notas[j];
         soma += diferenca * diferenca;
     }
-
     return sqrt(soma);
 }
-
-
-
 
 float Pessoamaissemelhante(Pessoa pessoas[], int verificaNome, int quant, int *nomeachado)
 {
@@ -355,12 +308,8 @@ float Pessoamaissemelhante(Pessoa pessoas[], int verificaNome, int quant, int *n
             }
         }
     }
-
     return proximo;
 }
-
-
-
 
 void afinidade(Pessoa pessoas[], char nomepesquisado[], int qtdCadastro)
 {
@@ -380,9 +329,6 @@ void afinidade(Pessoa pessoas[], char nomepesquisado[], int qtdCadastro)
         printf("Nome nao encontrado!\n");
         return;
     }
-
-    /* ----- Alocação dinâmica auxiliar ----- */
-
     indices = malloc((qtdCadastro - 1) * sizeof(int));
     distancias = malloc((qtdCadastro - 1) * sizeof(float));
 
@@ -404,8 +350,6 @@ void afinidade(Pessoa pessoas[], char nomepesquisado[], int qtdCadastro)
             qtd++;
         }
     }
-
-    /* ----- Bubble Sort ----- */
 
     for (i = 0; i < qtd - 1; i++)
     {
@@ -432,23 +376,14 @@ void afinidade(Pessoa pessoas[], char nomepesquisado[], int qtdCadastro)
     {
         printf("%d - %s - Distancia: %.2f\n", i + 1, pessoas[indices[i]].nome, distancias[i]);
     }
-
-    /* ----- Liberando memória ----- */
-
     free(indices);
     free(distancias);
 }
-
-
-
 
 float buscaNota(Pessoa pessoas[], int indiceNota, int pessoa)
 {
     return pessoas[pessoa].notas[indiceNota];
 }
-
-
-
 
 void analisePreferencia(Pessoa pessoas[], int pessoa1, int pessoa2)
 {
@@ -479,10 +414,8 @@ void analisePreferencia(Pessoa pessoas[], int pessoa1, int pessoa2)
         {
             menorDif = diferenca[i];
         }
-
         printf("%-15s %.1f\t%.1f\t%.1f\n", categorias[i], nota, nota2, diferenca[i]);
     }
-
     printf("-------------------------------------------------\n");
     printf("Distancia euclidiana: %.2f\n\n", distancia);
     printf("Preferencias mais semelhantes:\n");

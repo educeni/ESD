@@ -8,11 +8,7 @@
 #define QTD_PREF 6
 #define TAM_NOME 50
 
-
-/* ======================================================
-   PROTÓTIPOS DAS FUNÇÕES
-   ====================================================== */
-
+// Protótipo das funções
 int cadastro(int qtdCadastro, char **nomes, float **notas, int *quant);
 void exibir(char **nomes, float **notas, int qtdCadastro);
 int buscarnome(char nomepesquisado[], char **nomes, int qtdCadastro);
@@ -21,11 +17,6 @@ void afinidade(char **nomes, float **notas, char nomepesquisado[], int qtdCadast
 float Pessoamaissemelhante(float **notas, int verificaNome, char **nomes, int quant, int *nomeachado);
 void analisePreferencia(float **notas, char **nomes, int pessoa1, int pessoa2, int col);
 float buscaNota(float **notas, int indiceNota, int pessoa);
-
-
-/* ======================================================
-   FUNÇÃO PRINCIPAL - MAIN
-   ====================================================== */
 
 int main()
 {
@@ -42,29 +33,18 @@ int main()
     char nomepesquisado2[TAM_NOME];
     int i;
 
-
-    /* ----- Alocação dinâmica dos nomes ----- */
     nomes = malloc(MAX_PESSOAS * sizeof(char *));
-    
-
     for (i = 0; i < MAX_PESSOAS; i++)
     {
         nomes[i] = malloc(TAM_NOME * sizeof(char));
-    
     }
 
-
-    /* ----- Alocação dinâmica das notas ----- */
     notas = malloc(MAX_PESSOAS * sizeof(float *));
-    
-
     for (i = 0; i < MAX_PESSOAS; i++)
     {
         notas[i] = malloc(QTD_PREF * sizeof(float));
     }
 
-
-    /* ----- Menu principal ----- */
     while (escolha != 0)
     {
         printf("\n========================================\n");
@@ -102,8 +82,6 @@ int main()
                     printf("\nCadastro realizado com sucesso!\n");
                 }
                 break;
-
-
             case 2:
                 if (quant > 0)
                 {
@@ -114,8 +92,6 @@ int main()
                     printf("Nenhum cadastro registrado ainda.\n");
                 }
                 break;
-
-
             case 3:
                 if (quant > 0)
                 {
@@ -123,7 +99,6 @@ int main()
                     scanf("%49s", nomepesquisado);
 
                     verificaNome = buscarnome(nomepesquisado, nomes, quant);
-
                     if (verificaNome != -1)
                     {
                         printf("%s foi encontrado no sistema.\n", nomepesquisado);
@@ -138,15 +113,12 @@ int main()
                     printf("Nenhum cadastro registrado ainda.\n");
                 }
                 break;
-
-
             case 4:
                 if (quant < 2)
                 {
                     printf("E necessario cadastrar pelo menos duas pessoas.\n");
                     break;
                 }
-
                 printf("Forneca o nome da primeira pessoa: ");
                 scanf("%49s", nomepesquisado);
                 printf("Forneca o nome da segunda pessoa: ");
@@ -170,15 +142,12 @@ int main()
                     printf("Um ou mais nomes nao foram encontrados.\n");
                 }
                 break;
-
-
             case 5:
                 if (quant < 2)
                 {
                     printf("E necessario cadastrar pelo menos duas pessoas.\n");
                     break;
                 }
-
                 printf("Forneca o nome da pessoa: ");
                 scanf("%49s", nomepesquisado);
 
@@ -199,29 +168,23 @@ int main()
                     printf("Nome nao encontrado.\n");
                 }
                 break;
-
-
             case 6:
                 if (quant < 2)
                 {
                     printf("E necessario cadastrar pelo menos duas pessoas.\n");
                     break;
                 }
-
                 printf("Informe a pessoa de referencia: ");
                 scanf("%49s", nomepesquisado);
 
                 afinidade(nomes, notas, nomepesquisado, quant);
                 break;
-
-
             case 7:
                 if (quant < 2)
                 {
                     printf("E necessario cadastrar pelo menos duas pessoas.\n");
                     break;
                 }
-
                 printf("Informe a primeira pessoa: ");
                 scanf("%49s", nomepesquisado);
                 printf("Informe a segunda pessoa: ");
@@ -239,21 +202,14 @@ int main()
                     printf("Um ou mais nomes nao foram encontrados.\n");
                 }
                 break;
-
-
             case 0:
                 printf("\nEncerrando o sistema...\n");
                 break;
-
-
             default:
                 printf("Opcao invalida. Tente novamente.\n");
                 break;
         }
     }
-
-
-    /* ----- Liberação da memória ----- */
     for (i = 0; i < MAX_PESSOAS; i++)
     {
         free(notas[i]);
@@ -265,14 +221,8 @@ int main()
         free(nomes[i]);
     }
     free(nomes);
-
     return 0;
 }
-
-
-/* ======================================================
-   FUNÇÃO 1 - CADASTRO
-   ====================================================== */
 
 int cadastro(int qtdCadastro, char **nomes, float **notas, int *quant)
 {
@@ -291,27 +241,18 @@ int cadastro(int qtdCadastro, char **nomes, float **notas, int *quant)
             {
                 printf("Nota para %s: ", categorias[k]);
                 scanf("%f", &nota);
-
                 if (nota < 0 || nota > 10)
                 {
                     printf("Nota invalida! Deve ser entre 0 e 10.\n");
                 }
             }
             while (nota < 0 || nota > 10);
-
             notas[*quant][k] = nota;
         }
-
         (*quant)++;
     }
-
     return 1;
 }
-
-
-/* ======================================================
-   FUNÇÃO 2 - EXIBIR PESSOAS
-   ====================================================== */
 
 void exibir(char **nomes, float **notas, int qtdCadastro)
 {
@@ -335,11 +276,6 @@ void exibir(char **nomes, float **notas, int qtdCadastro)
     }
 }
 
-
-/* ======================================================
-   FUNÇÃO 3 - BUSCAR NOME
-   ====================================================== */
-
 int buscarnome(char nomepesquisado[], char **nomes, int qtdCadastro)
 {
     int i;
@@ -351,14 +287,8 @@ int buscarnome(char nomepesquisado[], char **nomes, int qtdCadastro)
             return i;
         }
     }
-
     return -1;
 }
-
-
-/* ======================================================
-   FUNÇÃO 4 - CALCULAR DISTÂNCIA
-   ====================================================== */
 
 float calculaDistancia(float **notas, int pessoa1, int pessoa2, int col)
 {
@@ -371,14 +301,8 @@ float calculaDistancia(float **notas, int pessoa1, int pessoa2, int col)
         diferenca = notas[pessoa1][j] - notas[pessoa2][j];
         soma += diferenca * diferenca;
     }
-
     return sqrt(soma);
 }
-
-
-/* ======================================================
-   FUNÇÃO 5 - PESSOA MAIS SEMELHANTE
-   ====================================================== */
 
 float Pessoamaissemelhante(float **notas, int verificaNome, char **nomes, int quant, int *nomeachado)
 {
@@ -393,7 +317,6 @@ float Pessoamaissemelhante(float **notas, int verificaNome, char **nomes, int qu
             result = calculaDistancia(notas, verificaNome, i, QTD_PREF);
 
             printf("Distancia para %s: %.2f\n", nomes[i], result);
-
             if (result < proximo)
             {
                 *nomeachado = i;
@@ -401,14 +324,8 @@ float Pessoamaissemelhante(float **notas, int verificaNome, char **nomes, int qu
             }
         }
     }
-
     return proximo;
 }
-
-
-/* ======================================================
-   FUNÇÃO 6 - RANKING DE AFINIDADE
-   ====================================================== */
 
 void afinidade(char **nomes, float **notas, char nomepesquisado[], int qtdCadastro)
 {
@@ -428,8 +345,6 @@ void afinidade(char **nomes, float **notas, char nomepesquisado[], int qtdCadast
         printf("Nome nao encontrado!\n");
         return;
     }
-
-    /* ----- Alocação dinâmica auxiliar ----- */
     indices = malloc((qtdCadastro - 1) * sizeof(int));
     distancias = malloc((qtdCadastro - 1) * sizeof(float));
 
@@ -452,7 +367,6 @@ void afinidade(char **nomes, float **notas, char nomepesquisado[], int qtdCadast
         }
     }
 
-    /* ----- Bubble Sort ----- */
     for (i = 0; i < qtd - 1; i++)
     {
         for (j = 0; j < qtd - 1 - i; j++)
@@ -478,26 +392,14 @@ void afinidade(char **nomes, float **notas, char nomepesquisado[], int qtdCadast
     {
         printf("%d - %s - Distancia: %.2f\n", i + 1, nomes[indices[i]], distancias[i]);
     }
-
-    /* ----- Liberando memória ----- */
     free(indices);
     free(distancias);
 }
-
-
-/* ======================================================
-   FUNÇÃO 7 - BUSCAR NOTA
-   ====================================================== */
 
 float buscaNota(float **notas, int indiceNota, int pessoa)
 {
     return notas[pessoa][indiceNota];
 }
-
-
-/* ======================================================
-   FUNÇÃO 8 - ANÁLISE DE PREFERÊNCIA
-   ====================================================== */
 
 void analisePreferencia(float **notas, char **nomes, int pessoa1, int pessoa2, int col)
 {
@@ -528,10 +430,8 @@ void analisePreferencia(float **notas, char **nomes, int pessoa1, int pessoa2, i
         {
             menorDif = diferenca[i];
         }
-
         printf("%-15s %.1f\t%.1f\t%.1f\n", categorias[i], nota, nota2, diferenca[i]);
     }
-
     printf("-------------------------------------------------\n");
     printf("Distancia euclidiana: %.2f\n\n", distancia);
     printf("Preferencias mais semelhantes:\n");
