@@ -1,3 +1,8 @@
+// v3
+// Eduardo Ceni Paiva Santos
+// Alexander Borges do Nascimento
+// Gustavo Ricardo da Silva Vieira
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
